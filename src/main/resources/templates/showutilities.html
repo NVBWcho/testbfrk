@@ -1,0 +1,43 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+  <head> 
+    <title>Kries ÖPNV</title>
+    <link th:href="@{/grades-stylesheet.css}" rel="stylesheet">
+    <style>
+.banner {
+  text-align: center;
+  border: 3px solid green;
+  background-color: lightblue;
+}
+</style>
+
+  </head>
+  <body>
+
+    <div class="topnav">
+      <a th:href="@{https://www.mobidata-bw.de/group/barrierefreie-reisekette}"> Barrierefreiheit  Baden-Württemberg</a>
+      <a th:href="@{/landingPage}">Home</a>
+    </div>
+
+    <div class="table-display">
+
+      <table id="table" style="width: 400px;">
+        <caption><p class="banner-info" th:text="'Einrichtungen am Haltestelle/Bahnhof '+${stopname}"></p></caption>
+        <tr>
+          <th>Object Id</th>
+          <th>Type</th>
+          <th>OSM id</th>
+          
+        </tr>
+        <tr th:each="utility: ${utilities}">
+            <td th:text="${utility.objectId}"></td>
+          <td th:text="${utility.type}"></td>
+          <td th:text="${utility.osmId}"></td>
+          
+
+        </tr>
+      </table>
+    </div>
+    
+  </body>
+</html>

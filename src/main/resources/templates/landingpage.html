@@ -1,0 +1,43 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+  <head> 
+    <title>Grades</title>
+    <link th:href="@{/grades-stylesheet.css}" rel="stylesheet">
+    <style>
+.banner {
+  text-align: center;
+  border: 3px solid green;
+  background-color: lightblue;
+}
+</style>
+
+  </head>
+  <body>
+  <div class="landingPageHeader">Barrierefreiheit Baden Württemberg</div>
+
+ <div class="welcomeMessage">
+
+  <table class="horizontal-table">
+
+    <tr>
+      <th colspan="2"> Select a  category</th>
+    </tr>
+      <tr>
+        <td><a th:href="@{/KriesOPNV}">ÖPNV</a></th>
+       
+        <td><a th:href="@{/KriesSPNV}">SPNV</a></th>
+      </tr>
+      
+    </table>
+
+
+ </div>
+
+  
+
+  
+    
+
+    
+  </body>
+</html>

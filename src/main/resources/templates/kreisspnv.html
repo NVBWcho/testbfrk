@@ -1,0 +1,41 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+  <head> 
+    <title>Kries ÖPNV</title>
+    <link th:href="@{/grades-stylesheet.css}" rel="stylesheet">
+    <style>
+.banner {
+  text-align: center;
+  border: 3px solid green;
+  background-color: lightblue;
+}
+</style>
+
+  </head>
+  <body>
+
+    <div class="topnav">
+      <a th:href="@{https://www.mobidata-bw.de/group/barrierefreie-reisekette}"> Barrierefreiheit  Baden-Württemberg</a>
+      <a th:href="@{/landingPage}">Home</a>
+    </div>
+    <div class="table-display">
+      <p class="banner-info">Informationen über die Kreise</p>
+      <table id="table"> 
+        <tr>
+          <th>Kreis Name</th>
+          <th>Regionalschlüssel</th>
+          <th>Anzahl der SPNV Haltestellen</th>
+          <th>Link</th>
+        </tr>
+        <tr th:each="kreis: ${kriesOPNV}">
+            <td th:text="${kreis.name}"></td>
+          <td th:text="${kreis.kreisId}"></td>
+          <td th:text="${kreis.numOfSPNVHaltestelles}"></td>
+          <td><a role="button" class="update" th:href="@{'/OPNVatKries/'+${kreis.kreisId}}">zu den Haltestellen</a> </td>
+
+        </tr>
+      </table>
+    </div>
+    
+  </body>
+</html>
