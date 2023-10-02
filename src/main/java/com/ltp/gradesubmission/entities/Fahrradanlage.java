@@ -20,10 +20,14 @@ public class Fahrradanlage extends HaltestelleUtilities {
     private String hinderniszufahrt_Foto;
 
 
+    @Override
+    public void generateDescription() {
+        super.description="Fahrrad anlage mit"+stellplatzanzahl+" anlageplatz";
+    }
 
-
-    public Fahrradanlage(String objectId,String type, Haltestelle parHaltestelle,String osmId){
+    public Fahrradanlage(String objectId, String type, Haltestelle parHaltestelle, String osmId){
         super(objectId, type, parHaltestelle, osmId);
+
     }
 
 

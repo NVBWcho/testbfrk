@@ -6,6 +6,7 @@ import com.ltp.gradesubmission.achive.Grade;
 import com.ltp.gradesubmission.entities.Haltestelle;
 import com.ltp.gradesubmission.entities.HaltestelleUtilities;
 import com.ltp.gradesubmission.entities.Kreis;
+import com.ltp.gradesubmission.entities.KreisSearchHelper;
 import com.ltp.gradesubmission.repository.HaltestelleRepository;
 import com.ltp.gradesubmission.repository.KreisRepository;
 import com.ltp.gradesubmission.service.GradeService;
@@ -13,13 +14,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
@@ -40,14 +39,50 @@ public class BFRKController {
     @GetMapping("/")
     public String getForm(Model model, @RequestParam(required = false) String id) {
 
-        model.addAttribute("grade", gradeService.getGradeById(id));
-        model.addAttribute("subjects", gradeService.getSubjects());
+        List<Kreis> allkries=kreisRepository.getAllKreis();
+        List<String> kriesNames=allkries.stream().map(kreis->kreis.getName()).collect(Collectors.toList());
+        KreisSearchHelper mySearcher=new KreisSearchHelper(kriesNames,"Bitte wahlen eine Kreis aus","OPNV");
+        model.addAttribute("kriesSearcher",mySearcher);
+
+
 
         return "landingPage";
     }
 
+    @PostMapping("/kreisInformation")
+    public  String getKreisInformation(@ModelAttribute("kreisSearcher") KreisSearchHelper mySearcher,Model model){
+
+        if(mySearcher.getSelectedKreis().equals("")){
+            model.addAttribute("selectionError", "error");
+            return "redirect:/";
+        }
+
+        System.out.println(mySearcher.getSelectedKreis());
+
+        Kreis selectedKreis=kreisRepository.getAllKreis().stream().filter(k->k.getName().equals(mySearcher.getSelectedKreis())).limit(1).collect(Collectors.toList()).get(0);
+        String kriesId=selectedKreis.getKreisId();
+        System.out.println(selectedKreis.getName());
+        if(mySearcher.getSearchType().equals("OPNV")){
+            return  "redirect:OPNVatKries/"+kriesId;
+
+
+
+        }
+
+        return  "redirect:SPNVatKries/"+kriesId;
+
+
+
+
+    }
+
     @GetMapping("/landingPage")
     public String getLandingPage(Model model) {
+
+        List<Kreis> allkries=kreisRepository.getAllKreis();
+        List<String> kriesNames=allkries.stream().map(kreis->kreis.getName()).collect(Collectors.toList());
+        KreisSearchHelper mySearcher=new KreisSearchHelper(kriesNames,"Bitte wahlen eine Kreis aus","OPNV");
+        model.addAttribute("kriesSearcher",mySearcher);
 
         return "landingPage";
     }
@@ -175,9 +210,10 @@ public class BFRKController {
         System.out.println(thiHaltestelle.getParentKreis().getName());
         System.out.println(thiHaltestelle.getHstName());
 
-        System.out.println(utilitiesAtSite.get(0).getObjectId());
-        System.out.println(utilitiesAtSite.get(0).getType());
-        System.out.println(utilitiesAtSite.get(0).getOsmId());
+        //System.out.println(utilitiesAtSite.get(0).getObjectId());
+        //System.out.println(utilitiesAtSite.get(0).getType());
+        //System.out.println(utilitiesAtSite.get(0).getOsmId());
+        System.out.println(utilitiesAtSite.get(0).getDescription());
 
 
 

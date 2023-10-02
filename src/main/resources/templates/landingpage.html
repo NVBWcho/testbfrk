@@ -1,8 +1,15 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
   <head> 
-    <title>Grades</title>
+    <title>BFRK</title>
     <link th:href="@{/grades-stylesheet.css}" rel="stylesheet">
+      <!-- Bootstrap CSS -->
+
+      <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css">
+<script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.4.2/chosen.jquery.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.4.2/chosen.css">
     <style>
 .banner {
   text-align: center;
@@ -13,22 +20,69 @@
 
   </head>
   <body>
+  <script type="text/javascript">
+        $(function() {
+            $(".chzn-select").chosen(
+            {
+                no_results_text: "Kreis nicht gefunden",
+                placeholder_text_single:"Suche nach einem Kreis"
+            }
+
+            );
+        });
+        </script>
   <div class="landingPageHeader">Barrierefreiheit Baden Württemberg</div>
 
  <div class="welcomeMessage">
 
-  <table class="horizontal-table">
+  
 
-    <tr>
-      <th colspan="2"> Select a  category</th>
-    </tr>
-      <tr>
-        <td><a th:href="@{/KriesOPNV}">ÖPNV</a></th>
-       
-        <td><a th:href="@{/KriesSPNV}">SPNV</a></th>
-      </tr>
+ 
+
       
-    </table>
+    
+
+    <div>
+      
+
+      <form th:action="@{/kreisInformation}" method="POST" th:object="${kriesSearcher}">
+
+        <div class="search-bar">
+         
+          <select class="chzn-select" style="height: 50px; width: 500px"   th:field="*{selectedKreis}">
+            <optgroup>
+              <option   value="">Wählen Sie einen Kreis</option>
+            <option th:each="kreis : ${kriesSearcher.kreise}"
+                    th:value="${kreis}"
+                    th:text="${kreis}"></option>
+
+            </optgroup>
+            
+          </select>
+
+
+        </div>
+        <br>
+        <br>
+
+        <div class="button-holder">
+          <input type="radio" th:field="*{searchType}" id="OPNV" name="StopType" value="OPNV">
+          <label for="OPNV">ÖPNV</label><br>
+          <input type="radio" th:field="*{searchType}" id="SPNV" name="StopType" value="SPNV" checked>
+          <label for="SPNV">SPNV</label>
+        <br>
+        <br>
+
+        </div>
+  
+        
+        
+        <input type="submit" class="submit-button" value="Suche" />
+      </form>
+      <div th:if="${selectionError!=null}">
+        <p style="color: red;">Bitte Wahlen einen Kreis</p>>
+    </div>
+    </div>
 
 
  </div>

@@ -100,6 +100,13 @@
     background: #263238;
   }
 
+  select{
+    width: 500px;
+    height: 300px;
+    font-family: serif;
+    font-size: 100px;
+  }
+
   .landingPageHeader{
     text-align: center;
     font-size: 50px;
@@ -119,30 +126,42 @@
     font-family: serif;
   }
 
-  .grid-container{
+  .grid-container {
+    margin:auto;
     display: grid;
-    column-gap: 20px;
-    grid-auto-columns: 2;
-    grid-auto-rows: 1;
-    color: #2D4556;
+    grid-template-columns: auto auto;
+    gap: 10px;
+    background-color: #2196F3;
     padding: 10px;
-   
+    width: 50vw;
+    height: 25vh;
   }
-
-  .grid-item{
-    margin-top: 30px;
-    margin-left: 30px;
-    padding-top: 40px;
-    height: 70px;
-    width: 70px;
-    background-color: #2D4556;
-    border: 1px solid #2D4556;
-    border-radius: 5%;
-    color: antiquewhite;
+  
+  .grid-container > div {
+    background-color: white;  
+    text-align: center;
+    padding: 20px 0;
+    font-size: 30px;
+    text-align: center;
+    place-items: center;
+    
+  }
+  
+  .item1 {
+    grid-column-start: 1;
+    grid-column-end: 3;
   }
 
   a{
     color:antiquewhite
+  }
+
+  .button-holder{
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    margin: auto;
+    justify-content: center;
   }
 
   .horizontal-table{
@@ -184,3 +203,28 @@
     display: table-caption;
     text-align: center;
   }
+
+ 
+
+  optgroup { font-size:200px; }
+
+ 
+
+  .chosen-container-single .chosen-single
+  {
+      border-radius: 5px;
+      box-shadow: inset 0px 1px 2px rgba(0,0,0,0.3);
+      border: none;
+      height: 50px !important;
+      max-height: 50px !important;
+      line-height: 50px !important;
+      
+      margin-left: 10px;
+      font-size: 20px !important;
+    }
+
+    .submit-button{
+      font-size: 20px;
+      font-family: serif;
+      border-radius: 10px;
+    }

@@ -14,11 +14,15 @@ public class Aufzug extends HaltestelleUtilities {
     private String stoerungkontakt_Foto;
 
 
-    
+    @Override
+    public void generateDescription() {
+        super.description=verbindungsfunktion;
+       
+    }
 
-
-   public Aufzug(String objectId,String type, Haltestelle parHaltestelle,String osmId){
+    public Aufzug(String objectId, String type, Haltestelle parHaltestelle, String osmId){
     super(objectId, type, parHaltestelle, osmId);
+
 
    }
 

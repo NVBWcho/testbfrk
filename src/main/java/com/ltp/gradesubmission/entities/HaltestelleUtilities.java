@@ -6,9 +6,19 @@ public abstract class HaltestelleUtilities {
     public String type;
     private Haltestelle parentHaltestelle;
     private String osmId;
+
+    public String description;
+    public String getDescription() {
+        return description;
+    }
+
     public String getObjectId() {
         return objectId;
     }
+
+    public abstract  void generateDescription();
+
+
 
     
     public HaltestelleUtilities(String objectId, String type, Haltestelle parentHaltestelle, String osmId) {
@@ -16,6 +26,7 @@ public abstract class HaltestelleUtilities {
         this.type = type;
         this.parentHaltestelle = parentHaltestelle;
         this.osmId = osmId;
+        this.description="Keine Informationen verfügbar";
         System.out.println("created object of type:"+type);
         UpdateParentHaltestelle(this);
     }

@@ -73,11 +73,18 @@ public class MainApplication implements CommandLineRunner {
 
         Aufzug aufzug0=new Aufzug("Lift1","Aufzug", h0, "osm");
         Aufzug aufzug1=new Aufzug("Lift2","Aufzug", h0, "osm");
+        aufzug0.setVerbindungsfunktion("Von 0 bis 1");
+        aufzug1.setVerbindungsfunktion("von 0 bis 2");
+        aufzug0.generateDescription();
+        aufzug1.generateDescription();
         Fahrradanlage fahrradanlage0=new Fahrradanlage("FA1","Fahrradanlage", h0, "osm");
 
         Fahrradanlage fahrradanlage1=new Fahrradanlage("FA2","Fahrradanlage", h0, "osm");
 
         Aufzug aufzug2=new Aufzug("Lift1","Aufzug", h2, "osm");
+        aufzug2.setVerbindungsfunktion("von 0 bis 3");
+        aufzug2.generateDescription();
+       
 
         Fahrradanlage fahrradanlage2=new Fahrradanlage("FA1","Fahrradanlage", h2, "osm");
 
