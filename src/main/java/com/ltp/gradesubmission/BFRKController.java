@@ -50,11 +50,17 @@ public class BFRKController {
     }
 
     @PostMapping("/kreisInformation")
-    public  String getKreisInformation(@ModelAttribute("kreisSearcher") KreisSearchHelper mySearcher,Model model){
+    public  String getKreisInformation(@ModelAttribute("kreisSearcher") KreisSearchHelper mySearcher,Model model,RedirectAttributes redirectAttributes){
 
         if(mySearcher.getSelectedKreis().equals("")){
             model.addAttribute("selectionError", "error");
-            return "redirect:/";
+            
+            List<Kreis> allkries=kreisRepository.getAllKreis();
+            List<String> kriesNames=allkries.stream().map(kreis->kreis.getName()).collect(Collectors.toList());
+            KreisSearchHelper newSearcher=new KreisSearchHelper(kriesNames,"Bitte wahlen eine Kreis aus","OPNV");
+            model.addAttribute("kriesSearcher",newSearcher);
+
+        return "landingPage";
         }
 
         System.out.println(mySearcher.getSelectedKreis());
@@ -172,6 +178,7 @@ public class BFRKController {
         Kreis thiKreis=kreisRepository.getKreisById(id);
 
         List<Haltestelle> haltestellesatKries=kreisRepository.getAllSPNVinKries(id);
+        model.addAttribute("kreisname", thiKreis);
 
         model.addAttribute("stopsAtKreis", haltestellesatKries)/* */;
 

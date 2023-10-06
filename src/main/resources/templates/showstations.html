@@ -14,29 +14,39 @@
   </head>
   <body>
 
+    
     <div class="topnav">
         <a th:href="@{https://www.mobidata-bw.de/group/barrierefreie-reisekette}"> Barrierefreiheit  Baden-Württemberg</a>
         <a th:href="@{/landingPage}">Home</a>
       </div>
 
-    <div class="table-display">
-      <p class="banner-info">Informationen über die Haltestelle</p>
-      <table id="table"> 
-        <tr>
-          <th>Name</th>
-          <th>Dhid</th>
-          <th>OSM Id</th>
-          <th>Link</th>
-        </tr>
-        <tr th:each="stop: ${stopsAtKreis}">
-            <td th:text="${stop.hstName}"></td>
-          <td th:text="${stop.dhid}"></td>
-          <td th:text="${stop.osmId}"></td>
-          <td><a role="button" class="update" th:href="@{'/Facility/'+${stop.id}}">Einrichtungen am Bahnhof</a> </td>
+    
 
-        </tr>
-      </table>
+
+    <div class="table-container">
+
+      <div class="table-caption" th:text="'Haltestellen im '+${kreisname.name}"></div>
+      <div class="grid-table">
+
+        <table  id="table"> 
+          <tr>
+            <th>Name</th>
+            <th>Dhid</th>
+            <th>OSM Id</th>
+            <th>Link</th>
+          </tr>
+          <tr th:each="stop: ${stopsAtKreis}">
+              <td th:text="${stop.hstName}"></td>
+            <td th:text="${stop.dhid}"></td>
+            <td th:text="${stop.osmId}"></td>
+            <td><a role="button" class="update" th:href="@{'/Facility/'+${stop.id}}">Einrichtungen am Bahnhof</a> </td>
+  
+          </tr>
+        </table>
+
+      </div>
     </div>
+
     
   </body>
 </html>

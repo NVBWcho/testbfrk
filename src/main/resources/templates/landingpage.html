@@ -51,7 +51,7 @@
          
           <select class="chzn-select" style="height: 50px; width: 500px"   th:field="*{selectedKreis}">
             <optgroup>
-              <option   value="">Wählen Sie einen Kreis</option>
+              <option   value="">Bitte wählen Sie einen Kreis</option>
             <option th:each="kreis : ${kriesSearcher.kreise}"
                     th:value="${kreis}"
                     th:text="${kreis}"></option>
@@ -80,7 +80,7 @@
         <input type="submit" class="submit-button" value="Suche" />
       </form>
       <div th:if="${selectionError!=null}">
-        <p style="color: red;">Bitte Wahlen einen Kreis</p>>
+        <p style="color: red">Bitte  einen Kreis wählen</p>
     </div>
     </div>
 
