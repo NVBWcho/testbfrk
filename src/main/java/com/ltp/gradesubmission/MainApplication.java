@@ -80,6 +80,8 @@ public class MainApplication implements CommandLineRunner {
         Fahrradanlage fahrradanlage0=new Fahrradanlage("FA1","Fahrradanlage", h0, "osm");
 
         Fahrradanlage fahrradanlage1=new Fahrradanlage("FA2","Fahrradanlage", h0, "osm");
+        Fahrradanlage fahrradanlage5=new Fahrradanlage("FA3","Fahrradanlage", h0, "osm");
+        Fahrradanlage fahrradanlage6=new Fahrradanlage("FA4","Fahrradanlage", h0, "osm");
 
         Aufzug aufzug2=new Aufzug("Lift1","Aufzug", h2, "osm");
         aufzug2.setVerbindungsfunktion("von 0 bis 3");

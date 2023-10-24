@@ -25,10 +25,11 @@
 
     <div class="table-container">
 
-      <div class="table-caption" th:text="'Haltestellen im '+${kreisname.name}"></div>
-      <div class="grid-table">
+      
+      <div class="scrollable-table">
 
         <table  id="table"> 
+          <caption><p class="banner-info" th:text="'Haltestellen im  '+${kreisname.name}"></p></caption>
           <tr>
             <th>Name</th>
             <th>Dhid</th>

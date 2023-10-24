@@ -21,24 +21,26 @@
 
     <div class="table-display">
 
-      <table id="table" style="width: 400px;">
-        <caption><p class="banner-info" th:text="'Einrichtungen am Haltestelle/Bahnhof '+${stopname}"></p></caption>
-        <tr>
-          <th>Object Id</th>
-          <th>Type</th>
-          <th>OSM id</th>
-          <th>Description</th>
-          
-        </tr>
-        <tr th:each="utility: ${utilities}">
-            <td th:text="${utility.objectId}"></td>
-          <td th:text="${utility.type}"></td>
-          <td th:text="${utility.osmId}"></td>
-          <td th:text="${utility.description}"></td>
-          
-
-        </tr>
-      </table>
+      <div class="scrollable-table" >
+        <table id="table" >
+          <caption><p class="banner-info" th:text="'Einrichtungen am Haltestelle/Bahnhof '+${stopname}"></p></caption>
+          <tr>
+            <th>Object Id</th>
+            <th>Type</th>
+            <th>OSM id</th>
+            <th>Description</th>
+            
+          </tr>
+          <tr th:each="utility: ${utilities}">
+              <td th:text="${utility.objectId}"></td>
+            <td th:text="${utility.type}"></td>
+            <td th:text="${utility.osmId}"></td>
+            <td th:text="${utility.description}"></td>
+            
+  
+          </tr>
+        </table>
+      </div>
     </div>
     
   </body>
